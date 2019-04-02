@@ -47,8 +47,15 @@ li{
   margin-left: 40px;
   width: 40%;
 }
+
+.SheduleForecast{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
 .schedule{
-  min-height: 30%;
+  min-height: 200px;;
   width: 100%;
   background-color: blue;
 }
@@ -107,4 +114,7 @@ top: 9px;
 }
 .modal--show {
   display: block;
+}
+.SheduleForecast{
+  margin-left: 30px;
 }
