@@ -1,28 +1,39 @@
 import React, { Component } from 'react';
+import AddCityModel from './AddCityModel';
 export default class AddCity extends Component{
 
-  state = {
-    text: ''
+  state={
+    cityList: [],
+    isOpen: true
   }
+  getCity=()=>{
+    let citiesList = localStorage.getItem('cities');
+    citiesList = JSON.parse(citiesList);
+    console.log(citiesList);
 
-  handleChange = event => {
-    console.log(event.currentTarget.value);
-    this.setState({text: event.currentTarget.value});
+  const gettingCityList = citiesList.map(el=><li>{el}</li>);
+  console.log(gettingCityList);
+
+    this.setState({
+    cityList: gettingCityList
+    });
+
+}
+  componentDidMount(){
+    this.getCity();
   }
-
   render(){
-
+    const {AddCityModel} = this.props;
+    const body = this.state.isOpen && <AddCityModel/>;
     return(
-      <div className="addSity">
-          <form className="addsity-form">
+        <div className="addsity-form">
           <h3>Города для просмотра</h3>
           <hr/>
-          <p className="city-list"></p>
-          <input type="text" value={this.state.text} onChange = {this.handleChange}/>
+          <ul>{this.state.cityList}</ul>
           <hr/>
-          <button onClick={this.props.weatherMethod} className="btn button-open"><div className="cross"></div></button>
-          </form>
-      </div>
+          <button onClick={this.props.showModel} className="btn button-open"><div className="cross"></div></button>
+        </div>
     );
   }
+
 }

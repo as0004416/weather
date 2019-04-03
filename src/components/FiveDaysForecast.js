@@ -9,7 +9,8 @@ export default class FiveDaysForecast extends Component{
   }
 
   gettingWeather = () => {
-    fetch(`https://openweathermap.org/data/2.5/forecast?q=Brest&mode=xml&appid=${API_FIVE}`)
+    const city = localStorage.getItem('currentCity');
+    fetch(`https://openweathermap.org/data/2.5/forecast?q=${city}&mode=xml&appid=${API_FIVE}`)
     .then(data => data.json())
     .then(data => {
     const res = data.list.filter(el=>(new Date(el.dt_txt).getHours())===15);
